@@ -1,4 +1,4 @@
-<?php 
+<?php
 include 'config.php';
 session_start();
 include "authcheckkasir.php";
@@ -28,7 +28,7 @@ if(isset($_SESSION['cart']))
 		<div class="col-md-12">
 			<h1>Kasir</h1>
 			<h2>Hai <?=$_SESSION['nama']?></h2>
-			<a href="logout.php">Logout</a> | 
+			<a href="logout.php">Logout</a> |
 			<a href="keranjang_reset.php">Reset Keranjang</a>
 		</div>
 	</div>
@@ -61,6 +61,7 @@ if(isset($_SESSION['cart']))
 					<th>Sub Total</th>
 					<th></th>
 				</tr>
+				<?php if(isset($_SESSION['cart'])): ?>
 				<?php foreach ($_SESSION['cart'] as $key => $value) { ?>
 					<tr>
 						<td><?=$value['nama']?></td>
@@ -72,12 +73,13 @@ if(isset($_SESSION['cart']))
 
 					</tr>
 				<?php } ?>
+				<?php endif; ?>
 			</table>
 			<button type="submit" class="btn btn-success">Perbaruhi</button>
 			</form>
 		</div>
 		<div class="col-md-4">
-			<h3>Total Rp. <?=number_format($sum)?></h3>			
+			<h3>Total Rp. <?=number_format($sum)?></h3>
 			<form action="transaksi_act.php" method="POST">
 				<input type="hidden" name="total" value="<?=$sum?>">
 			<div class="form-group">
@@ -85,13 +87,13 @@ if(isset($_SESSION['cart']))
 				<input type="text" id="bayar" name="bayar" class="form-control">
 			</div>
 			<button type="submit" class="btn btn-primary">Selesai</button>
-			</form>			
+			</form>
 		</div>
 	</div>
 </div>
 <script type="text/javascript">
 
-	//inisialisasi inputan 
+	//inisialisasi inputan
 	var bayar = document.getElementById('bayar');
 
 	bayar.addEventListener('keyup', function (e) {

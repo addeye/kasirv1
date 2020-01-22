@@ -1,5 +1,5 @@
-<?php 
-session_start();
+<?php
+// session_start();
 
 //Auth Check
 if(isset($_SESSION['userid']))
