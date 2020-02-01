@@ -29,7 +29,8 @@ if(isset($_SESSION['cart']))
 			<h1>Kasir</h1>
 			<h2>Hai <?=$_SESSION['nama']?></h2>
 			<a href="logout.php">Logout</a> |
-			<a href="keranjang_reset.php">Reset Keranjang</a>
+			<a href="keranjang_reset.php">Reset Keranjang</a> |
+			<a href="riwayat.php">Riwayat Transaksi</a>
 		</div>
 	</div>
 	<hr>

@@ -1,14 +1,11 @@
 <?php
 include 'config.php';
-session_start();
-include 'authcheckkasir.php';
+include "authcheckkasir.php";
 
-$id_trx = $_GET['idtrx'];
-
-$data = mysqli_query($dbconnect, "SELECT * FROM transaksi WHERE id_transaksi='$id_trx'");
+$data = mysqli_query($dbconnect,"SELECT * FROM transaksi WHERE id_transaksi='$id_trx'");
 $trx = mysqli_fetch_assoc($data);
 
-$detail = mysqli_query($dbconnect, "SELECT transaksi_detail.*, barang.nama FROM `transaksi_detail` INNER JOIN barang ON transaksi_detail.id_barang=barang.id_barang WHERE transaksi_detail.id_transaksi='$id_trx'");
+$detail = mysqli_query($dbconnect,"SELECT transaksi_detail.*, barang.nama FROM `transaksi_detail` INNER JOIN barang ON transaksi_detail.id_barang=barang.id_barang WHERE transaksi_detail.id_transaksi='$id_trx'");
 
 ?>
 
@@ -33,12 +30,12 @@ $detail = mysqli_query($dbconnect, "SELECT transaksi_detail.*, barang.nama FROM 
 			</tr>
 			<tr align="center"><td><hr></td></tr>
 			<tr>
-				<td>#<?=$trx['nomor']?> | <?=date('d-m-Y H:i:s', strtotime($trx['tanggal_waktu']))?> <?=$trx['nama']?></td>
+				<td>#<?=$trx['nomor']?> | <?=date('d-m-Y H:i:s',strtotime($trx['tanggal_waktu']))?> <?=$trx['nama']?></td>
 			</tr>
 			<tr><td><hr></td></tr>
 		</table>
 		<table width="500" border="0" cellpadding="3" cellspacing="0">
-			<?php while ($row = mysqli_fetch_array($detail)) { ?>
+			<?php while($row = mysqli_fetch_array($detail)){ ?>
 			<tr>
 				<td><?=$row['nama']?></td>
 				<td><?=$row['qty']?></td>
