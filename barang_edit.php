@@ -1,33 +1,32 @@
 
-<?php 
+<?php
 
 include 'config.php';
 session_start();
 include 'authcheck.php';
 
 if (isset($_GET['id'])) {
-	$id = $_GET['id'];
-	
-	//menampilkan data berdasarkan ID
-	$data = mysqli_query($dbconnect, "SELECT * FROM barang where id_barang='$id'");
-	$data = mysqli_fetch_assoc($data);
+    $id = $_GET['id'];
+
+    //menampilkan data berdasarkan ID
+    $data = mysqli_query($dbconnect, "SELECT * FROM barang where id_barang='$id'");
+    $data = mysqli_fetch_assoc($data);
 }
 
-if(isset($_POST['update']))
-{
-	$id = $_GET['id'];
-	
-	$nama = $_POST['nama'];
-	$harga = $_POST['harga'];
-	$jumlah = $_POST['jumlah'];
+if (isset($_POST['update'])) {
+    $id = $_GET['id'];
 
-	// Menyimpan ke database;
-	mysqli_query($dbconnect, "UPDATE barang SET nama='$nama', harga='$harga', jumlah='$jumlah' where id_barang='$id' ");
+    $nama = $_POST['nama'];
+    $harga = $_POST['harga'];
+    $jumlah = $_POST['jumlah'];
 
-	$_SESSION['success'] = 'Berhasil memperbaruhi data';
+    // Menyimpan ke database;
+    mysqli_query($dbconnect, "UPDATE barang SET nama='$nama', harga='$harga', jumlah='$jumlah' where id_barang='$id' ");
 
-	// mengalihkan halaman ke list barang
-	header("location:barang.php");
+    $_SESSION['success'] = 'Berhasil memperbaruhi data';
+
+    // mengalihkan halaman ke list barang
+    header('location:barang.php');
 }
 
 ?>
@@ -53,6 +52,9 @@ if(isset($_POST['update']))
 	  <div class="form-group">
 	    <label>Jumlah Stock</label>
 	    <input type="number" name="jumlah" class="form-control" placeholder="Jumlah Stock" value="<?=$data['jumlah']?>">
+	  </div>
+	  <div class="form-group">
+	  	<img alt="<?=$data['id_barang']?>" src="/library/barcode.php?text=<?=$data['id_barang']?>&print=true"/>
 	  </div>
   	<input type="submit" name="update" value="Perbaruhi" class="btn btn-primary">
   	<a href="/barang.php" class="btn btn-warning">Kembali</a>

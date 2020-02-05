@@ -18,10 +18,11 @@ ob_end_clean();
 $dompdf->loadHtml($struk);
 
 // (Optional) Setup the paper size and orientation
-$dompdf->setPaper('A4', 'landscape');
+$dompdf->setPaper('A4', 'potrait');
 
 // Render the HTML as PDF
 $dompdf->render();
 
 // Output the generated PDF to Browser
-$dompdf->stream('Invoice #' . $trx['nomor']);
+$dompdf->stream('Invoice #' . $trx['nomor'].'.pdf', ["Attachment" => false]);
+exit(0);

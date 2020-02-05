@@ -6,7 +6,7 @@ session_start();
 
 include 'authcheckkasir.php';
 
-$view = $dbconnect->query("SELECT * FROM transaksi");
+$view = $dbconnect->query('SELECT * FROM transaksi');
 // return var_dump($view);
 
 ?>
@@ -20,16 +20,16 @@ $view = $dbconnect->query("SELECT * FROM transaksi");
 <body>
 <div class="container">
 
-	<?php if(isset($_SESSION['success']) && $_SESSION['success'] != '') {?>
+	<?php if (isset($_SESSION['success']) && $_SESSION['success'] != '') {?>
 
 		<div class="alert alert-success" role="alert">
 			<?=$_SESSION['success']?>
 		</div>
 
 	<?php
-		}
-		$_SESSION['success'] = '';
-	?>
+        }
+        $_SESSION['success'] = '';
+    ?>
 
     <h1>Riwayat Transaksi</h1>
     <a href="/">Kembali</a>
@@ -43,7 +43,7 @@ $view = $dbconnect->query("SELECT * FROM transaksi");
 		</tr>
 		<?php
 
-		while ($row = $view->fetch_array()) { ?>
+        while ($row = $view->fetch_array()) { ?>
 
 		<tr>
 			<td> <?= $row['nomor'] ?> </td>
@@ -51,12 +51,12 @@ $view = $dbconnect->query("SELECT * FROM transaksi");
 			<td><?=$row['total']?></td>
 			<td><?=$row['nama']?></td>
 			<td>
-                <a href="/unduh_struk.php?idtrx=<?=$row['id_transaksi']?>" class="btn btn-primary">Unduh</a>
+                <a href="/unduh_struk.php?idtrx=<?=$row['id_transaksi']?>" class="btn btn-primary">Lihat</a>
 			</td>
 		</tr>
 
 		<?php }
-		?>
+        ?>
 
 	</table>
 </div>

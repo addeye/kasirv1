@@ -17,24 +17,25 @@ $detail = mysqli_query($dbconnect,"SELECT transaksi_detail.*, barang.nama FROM `
 	<style type="text/css">
 		body{
 			color: #a7a7a7;
+			padding: 0px 210px;
 		}
 	</style>
 </head>
 <body>
 	<div align="center">
-		<table width="500" border="0" cellpadding="1" cellspacing="0">
-			<tr>
+		<table width="100%" border="0" cellpadding="1" cellspacing="0">
+			<tr align="center">
 				<th>Toko ADI <br>
 					Jl Rokan Kiri 28 Bowongan Arjowinangun <br>
 				Pacitan, Jawa Timur, 60822</th>
 			</tr>
 			<tr align="center"><td><hr></td></tr>
-			<tr>
+			<tr align="center">
 				<td>#<?=$trx['nomor']?> | <?=date('d-m-Y H:i:s',strtotime($trx['tanggal_waktu']))?> <?=$trx['nama']?></td>
 			</tr>
 			<tr><td><hr></td></tr>
 		</table>
-		<table width="500" border="0" cellpadding="3" cellspacing="0">
+		<table width="100%" border="0" cellpadding="3" cellspacing="0">
 			<?php while($row = mysqli_fetch_array($detail)){ ?>
 			<tr>
 				<td><?=$row['nama']?></td>
@@ -59,15 +60,15 @@ $detail = mysqli_query($dbconnect,"SELECT transaksi_detail.*, barang.nama FROM `
 				<td align="right"><?=number_format($trx['kembali'])?></td>
 			</tr>
 		</table>
-		<table width="500" border="0" cellpadding="1" cellspacing="0">
+		<table width="100%" border="0" cellpadding="1" cellspacing="0">
 			<tr><td><hr></td></tr>
-			<tr>
+			<tr align="center">
 				<th>Terimkasih, Selamat Belanja Kembali</th>
 			</tr>
-			<tr>
+			<tr align="center">
 				<th>===== Layanan Konsumen ====</th>
 			</tr>
-			<tr>
+			<tr align="center">
 				<th>SMS/CALL 085895986529 </th>
 			</tr>
 		</table>
