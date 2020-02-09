@@ -1,5 +1,5 @@
 
-<?php 
+<?php
 
 include 'config.php';
 session_start();
@@ -8,12 +8,13 @@ include 'authcheck.php';
 if (isset($_POST['simpan'])) {
 	// echo var_dump($_POST);
 	$nama = $_POST['nama'];
+	$kode_barang = $_POST['kode_barang'];
 	$harga = $_POST['harga'];
 	$jumlah = $_POST['jumlah'];
 
 
 	// Menyimpan ke database;
-	mysqli_query($dbconnect, "INSERT INTO barang VALUES ('','$nama','$harga','$jumlah')");
+	mysqli_query($dbconnect, "INSERT INTO barang VALUES (NULL,'$nama','$harga','$jumlah','$kode_barang')");
 
 	$_SESSION['success'] = 'Berhasil menambahkan data';
 
@@ -37,6 +38,10 @@ if (isset($_POST['simpan'])) {
 	  <div class="form-group">
 	    <label>Nama Barang</label>
 	    <input type="text" name="nama" class="form-control" placeholder="Nama barang">
+	  </div>
+	  <div class="form-group">
+	    <label>Kode Barang</label>
+	    <input type="text" name="kode_barang" class="form-control" placeholder="Kode barang">
 	  </div>
 	  <div class="form-group">
 	    <label>Harga</label>

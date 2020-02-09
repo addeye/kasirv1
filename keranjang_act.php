@@ -3,12 +3,12 @@ include 'config.php';
 session_start();
 include "authcheckkasir.php";
 
-if(isset($_POST['id_barang']))
+if(isset($_POST['kode_barang']))
 {
-	$id_barang = $_POST['id_barang'];
-	$qty = $_POST['qty'];
+	$kode_barang = $_POST['kode_barang'];
+	$qty = 1;
 
-	$data = mysqli_query($dbconnect,"SELECT * FROM barang WHERE id_barang='$id_barang'");
+	$data = mysqli_query($dbconnect,"SELECT * FROM barang WHERE kode_barang='$kode_barang'");
 	// echo var_dump($data);
 	// return false;
 	$b = mysqli_fetch_assoc($data);
@@ -21,7 +21,7 @@ if(isset($_POST['id_barang']))
 	];
 
 	$_SESSION['cart'][]=$barang;
-	
+
 	krsort($_SESSION['cart']);
 
 	header('location:kasir.php');

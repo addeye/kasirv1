@@ -1,5 +1,5 @@
 
-<?php 
+<?php
 
 include 'config.php';
 session_start();
@@ -25,16 +25,19 @@ $view = $dbconnect->query("SELECT * FROM barang");
 			<?=$_SESSION['success']?>
 		</div>
 
-	<?php 
-		} 
+	<?php
+		}
 		$_SESSION['success'] = '';
 	?>
 
 	<h1>List Barang</h1>
 	<a href="/barang_add.php" class="btn btn-primary">Tambah data</a>
+	<a href="/barang_cetak_barcode.php" class="btn btn-success">Cetak Barcode</a>
+	<hr>
 	<table class="table table-bordered">
 		<tr>
 			<th>ID Barang</th>
+			<th>Kode</th>
 			<th>Nama</th>
 			<th>Harga</th>
 			<th>Jumlah Stok</th>
@@ -46,6 +49,7 @@ $view = $dbconnect->query("SELECT * FROM barang");
 
 		<tr>
 			<td> <?= $row['id_barang'] ?> </td>
+			<td> <?= $row['kode_barang'] ?> </td>
 			<td><?= $row['nama'] ?></td>
 			<td><?=$row['harga']?></td>
 			<td><?=$row['jumlah']?></td>
@@ -54,10 +58,10 @@ $view = $dbconnect->query("SELECT * FROM barang");
 				<a href="/barang_hapus.php?id=<?= $row['id_barang'] ?>" onclick="return confirm('apakah anda yakin?')">Hapus</a>
 			</td>
 		</tr>
-			
+
 		<?php }
 		?>
-		
+
 	</table>
 </div>
 </body>
