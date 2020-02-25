@@ -1,5 +1,5 @@
 
-<?php 
+<?php
 
 include 'config.php';
 session_start();
@@ -7,7 +7,7 @@ include 'authcheck.php';
 
 if (isset($_GET['id'])) {
 	$id = $_GET['id'];
-	
+
 	//menampilkan data berdasarkan ID
 	$data = mysqli_query($dbconnect, "SELECT * FROM role where id_role='$id'");
 	$data = mysqli_fetch_assoc($data);
@@ -16,11 +16,11 @@ if (isset($_GET['id'])) {
 if(isset($_POST['update']))
 {
 	$id = $_GET['id'];
-	
+
 	$nama = $_POST['nama'];
 
 	// Menyimpan ke database;
-	mysqli_query($dbconnect, "UPDATE role SET nama='$nama' where id_barang='$id' ");
+	mysqli_query($dbconnect, "UPDATE role SET nama='$nama' where id_role='$id' ");
 
 	$_SESSION['success'] = 'Berhasil memperbaruhi data';
 

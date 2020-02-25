@@ -5,17 +5,14 @@ session_start();
 
 //fungsi dari membatasi hak akses
 
-if(isset($_SESSION['userid']))
-{
-	if($_SESSION['role_id']==2)
-	{
-		//redirect ke halaman kasir.php
-		header("Location:kasir.php");
-	}
-}else
-{
-	$_SESSION['error'] = 'Anda harus login dahulu';
-	header("location:login.php");
+if (isset($_SESSION['userid'])) {
+    if ($_SESSION['role_id'] == 2) {
+        //redirect ke halaman kasir.php
+        header('Location:kasir.php');
+    }
+} else {
+    $_SESSION['error'] = 'Anda harus login dahulu';
+    header('location:login.php');
 }
 
  ?>
@@ -30,7 +27,11 @@ if(isset($_SESSION['userid']))
 <body>
 <div class="container">
 	<h1>Selamat datang</h1>
-	<a href="/barang.php">Barang</a> | <a href="/role.php">Role</a> | <a href="/user.php">User</a> | <a href="logout.php">Logout</a>
+	<a href="/barang.php">Barang</a> |
+	<a href="/role.php">Role</a> |
+	<a href="/user.php">User</a> |
+	<a href="/dis_barang.php">Diskon Barang</a> |
+	<a href="logout.php">Logout</a>
 </div>
 </body>
 </html>

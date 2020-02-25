@@ -1,17 +1,16 @@
 <?php
 include 'config.php';
 session_start();
-include "authcheckkasir.php";
+include 'authcheckkasir.php';
 
-$barang = mysqli_query($dbconnect,"SELECT * FROM barang");
+$barang = mysqli_query($dbconnect, 'SELECT * FROM barang');
 // print_r($_SESSION);
 
 $sum = 0;
-if(isset($_SESSION['cart']))
-{
-	foreach ($_SESSION['cart'] as $key => $value) {
-		$sum += $value['harga']*$value['qty'];
-	}
+if (isset($_SESSION['cart'])) {
+    foreach ($_SESSION['cart'] as $key => $value) {
+        $sum += $value['harga'] * $value['qty'];
+    }
 }
 
 ?>
@@ -51,16 +50,16 @@ if(isset($_SESSION['cart']))
 					<th>Sub Total</th>
 					<th></th>
 				</tr>
-				<?php if(isset($_SESSION['cart'])): ?>
+				<?php if (isset($_SESSION['cart'])): ?>
 				<?php foreach ($_SESSION['cart'] as $key => $value) { ?>
 					<tr>
 						<td><?=$value['nama']?></td>
 						<td align="right"><?=number_format($value['harga'])?></td>
-						<td class="col-md-2"><input type="number" name="qty[]" value="<?=$value['qty']?>" class="form-control"></td>
-						<td align="right"><?=number_format($value['qty']*$value['harga'])?></td>
-
+						<td class="col-md-2">
+							<input type="number" name="qty[<?=$key?>]" value="<?=$value['qty']?>" class="form-control">
+						</td>
+						<td align="right"><?=number_format($value['qty'] * $value['harga'])?></td>
 						<td><a href="keranjang_hapus.php?id=<?=$value['id']?>" class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i></a></td>
-
 					</tr>
 				<?php } ?>
 				<?php endif; ?>

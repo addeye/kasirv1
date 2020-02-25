@@ -8,6 +8,9 @@ $id_trx = $_GET['idtrx'];
 $data = mysqli_query($dbconnect, "SELECT * FROM transaksi WHERE id_transaksi='$id_trx'");
 $trx = mysqli_fetch_assoc($data);
 
+$diskon = mysqli_query($dbconnect,"SELECT * FROM diskon limit 1");
+$diskon = mysqli_fetch_assoc($diskon);
+
 $detail = mysqli_query($dbconnect, "SELECT transaksi_detail.*, barang.nama FROM `transaksi_detail` INNER JOIN barang ON transaksi_detail.id_barang=barang.id_barang WHERE transaksi_detail.id_transaksi='$id_trx'");
 
 ?>
@@ -53,13 +56,19 @@ $detail = mysqli_query($dbconnect, "SELECT transaksi_detail.*, barang.nama FROM 
 				<td align="right" colspan="3">Total</td>
 				<td align="right"><?=number_format($trx['total'])?></td>
 			</tr>
+			<?php if($trx['total'] > $diskon['batas']): ?>
+			<tr>
+				<td align="right" colspan="3">Potongan</td>
+				<td align="right">-<?=number_format($diskon['potongan'])?></td>
+			</tr>
+			<?php endif; ?>
 			<tr>
 				<td align="right" colspan="3">Bayar</td>
 				<td align="right"><?=number_format($trx['bayar'])?></td>
 			</tr>
 			<tr>
 				<td align="right" colspan="3">Kembali</td>
-				<td align="right"><?=number_format($trx['kembali'])?></td>
+				<td align="right"><?=number_format($trx['kembali']+$diskon['potongan'])?></td>
 			</tr>
 		</table>
 		<table width="500" border="0" cellpadding="1" cellspacing="0">
