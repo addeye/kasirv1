@@ -1,4 +1,5 @@
 <?php
+include 'config.php';
 session_start();
 
 // print_r($_SESSION);
@@ -69,13 +70,13 @@ if (isset($_SESSION['userid'])) {
       <div class="sidebar-sticky pt-3">
         <ul class="nav flex-column">
           <li class="nav-item">
-            <a class="nav-link active" href="#">
+            <a class="nav-link active" href="/">
               <span data-feather="home"></span>
               Dashboard <span class="sr-only">(current)</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="barang.php">
+            <a class="nav-link" href="index.php?page=barang">
               <span data-feather="file"></span>
               Barang
             </a>
@@ -106,9 +107,14 @@ if (isset($_SESSION['userid'])) {
       <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
 		<h1 class="h2">Dashboard</h1>
 	  </div>
-	  <?php
-        include 'page/barang.php';
-      ?>
+    <?php
+
+      if (isset($_GET['page']) && $_GET['page'] != '') {
+          include 'page/' . $_GET['page'] . '.php';
+      } else {
+          include 'page/home.php';
+      }
+    ?>
     </main>
   </div>
 </div>
