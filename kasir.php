@@ -9,7 +9,7 @@ $barang = mysqli_query($dbconnect, 'SELECT * FROM barang');
 $sum = 0;
 if (isset($_SESSION['cart'])) {
     foreach ($_SESSION['cart'] as $key => $value) {
-        $sum += $value['harga'] * $value['qty'];
+        $sum += ($value['harga'] * $value['qty']) - $value['diskon'];
     }
 }
 
@@ -53,12 +53,17 @@ if (isset($_SESSION['cart'])) {
 				<?php if (isset($_SESSION['cart'])): ?>
 				<?php foreach ($_SESSION['cart'] as $key => $value) { ?>
 					<tr>
-						<td><?=$value['nama']?></td>
+						<td>
+							<?=$value['nama']?>
+							<?php if ($value['diskon'] > 0): ?>
+								<br><small class="label label-danger">Diskon <?=number_format($value['diskon'])?></small>
+							<?php endif;?>
+						</td>
 						<td align="right"><?=number_format($value['harga'])?></td>
 						<td class="col-md-2">
 							<input type="number" name="qty[<?=$key?>]" value="<?=$value['qty']?>" class="form-control">
 						</td>
-						<td align="right"><?=number_format($value['qty'] * $value['harga'])?></td>
+						<td align="right"><?=number_format(($value['qty'] * $value['harga'])-$value['diskon'])?></td>
 						<td><a href="keranjang_hapus.php?id=<?=$value['id']?>" class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i></a></td>
 					</tr>
 				<?php } ?>

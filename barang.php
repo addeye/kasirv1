@@ -6,7 +6,7 @@ session_start();
 
 include 'authcheck.php';
 
-$view = $dbconnect->query("SELECT * FROM barang");
+$view = $dbconnect->query('SELECT * FROM barang');
 
 ?>
 
@@ -14,21 +14,21 @@ $view = $dbconnect->query("SELECT * FROM barang");
 <html>
 <head>
 	<title>List Barang</title>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<link rel="stylesheet" href="/bootstrap/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 </head>
 <body>
 <div class="container">
 
-	<?php if(isset($_SESSION['success']) && $_SESSION['success'] != '') {?>
+	<?php if (isset($_SESSION['success']) && $_SESSION['success'] != '') {?>
 
 		<div class="alert alert-success" role="alert">
 			<?=$_SESSION['success']?>
 		</div>
 
 	<?php
-		}
-		$_SESSION['success'] = '';
-	?>
+        }
+        $_SESSION['success'] = '';
+    ?>
 
 	<h1>List Barang</h1>
 	<a href="/barang_add.php" class="btn btn-primary">Tambah data</a>
@@ -45,7 +45,7 @@ $view = $dbconnect->query("SELECT * FROM barang");
 		</tr>
 		<?php
 
-		while ($row = $view->fetch_array()) { ?>
+        while ($row = $view->fetch_array()) { ?>
 
 		<tr>
 			<td> <?= $row['id_barang'] ?> </td>
@@ -60,7 +60,7 @@ $view = $dbconnect->query("SELECT * FROM barang");
 		</tr>
 
 		<?php }
-		?>
+        ?>
 
 	</table>
 </div>

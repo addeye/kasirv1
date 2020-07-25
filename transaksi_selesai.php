@@ -23,7 +23,7 @@ $detail = mysqli_query($dbconnect, "SELECT transaksi_detail.*, barang.nama FROM 
 		}
 	</style>
 </head>
-<body>
+<body onload="window.print(); self.close();">
 	<div align="center">
 		<table width="500" border="0" cellpadding="1" cellspacing="0">
 			<tr>
@@ -40,10 +40,22 @@ $detail = mysqli_query($dbconnect, "SELECT transaksi_detail.*, barang.nama FROM 
 		<table width="500" border="0" cellpadding="3" cellspacing="0">
 			<?php while ($row = mysqli_fetch_array($detail)) { ?>
 			<tr>
-				<td><?=$row['nama']?></td>
-				<td><?=$row['qty']?></td>
-				<td align="right"><?=number_format($row['harga'])?></td>
-				<td align="right"><?=number_format($row['total'])?></td>
+				<td valign="top">
+					<?=$row['nama']?>
+					<?php if ($row['diskon'] > 0): ?>
+					<br>
+					<small>Diskon</small>
+					<?php endif; ?>
+				</td>
+				<td valign="top"><?=$row['qty']?></td>
+				<td  valign="top" align="right"><?=number_format($row['harga'])?></td>
+				<td valign="top" align="right">
+					<?=number_format($row['total'])?>
+					<?php if ($row['diskon'] > 0): ?>
+					<br>
+					<small>-<?=number_format($row['diskon'])?></small>
+					<?php endif; ?>
+				</td>
 			</tr>
 			<?php } ?>
 			<tr>

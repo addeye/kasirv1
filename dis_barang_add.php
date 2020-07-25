@@ -5,22 +5,21 @@ include 'config.php';
 session_start();
 include 'authcheck.php';
 
-$view = $dbconnect->query("SELECT * FROM barang");
+$view = $dbconnect->query('SELECT * FROM barang');
 
 if (isset($_POST['simpan'])) {
-	// return var_dump($_POST);
-	$barang_id = $_POST['barang_id'];
-	$qty = $_POST['qty'];
-	$potongan = $_POST['potongan'];
+    // return var_dump($_POST);
+    $barang_id = $_POST['barang_id'];
+    $qty = $_POST['qty'];
+    $potongan = $_POST['potongan'];
 
-	// Menyimpan ke database;
-	mysqli_query($dbconnect, "INSERT INTO disbarang VALUES (NULL,'$barang_id','$qty','$potongan')");
+    // Menyimpan ke database;
+    mysqli_query($dbconnect, "INSERT INTO disbarang VALUES (NULL,'$barang_id','$qty','$potongan')");
 
-	$_SESSION['success'] = 'Berhasil menambahkan data';
+    $_SESSION['success'] = 'Berhasil menambahkan data';
 
-	// mengalihkan halaman ke list barang
-	header("location:dis_barang.php");
-
+    // mengalihkan halaman ke list barang
+    header('location:dis_barang.php');
 }
 
 ?>

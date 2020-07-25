@@ -29,8 +29,9 @@ foreach ($_SESSION['cart'] as $key => $value) {
 	$harga = $value['harga'];
 	$qty = $value['qty'];
 	$tot = $harga*$qty;
+	$disk = $value['diskon'];
 
-	mysqli_query($dbconnect,"INSERT INTO transaksi_detail (id_transaksi_detail,id_transaksi,id_barang,harga,qty,total) VALUES (NULL,'$id_transaksi','$id_barang','$harga','$qty','$tot')");
+	mysqli_query($dbconnect,"INSERT INTO transaksi_detail (id_transaksi_detail,id_transaksi,id_barang,harga,qty,total,diskon) VALUES (NULL,'$id_transaksi','$id_barang','$harga','$qty','$tot','$disk')");
 
 	// $sum += $value['harga']*$value['qty'];
 }
