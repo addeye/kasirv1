@@ -38,7 +38,7 @@ if (isset($_POST['simpan'])) {
 	    <label>Jumlah Stock</label>
 	    <input type="number" name="jumlah" class="form-control" placeholder="Jumlah Stock">
 	  </div>
-  	<input type="submit" name="simpan" value="Simpan" class="btn btn-primary">
-  	<a href="/barang.php" class="btn btn-warning">Kembali</a>
+  		<input type="submit" name="simpan" value="Simpan" class="btn btn-primary">
+  		<a href="?page=barang" class="btn btn-warning">Kembali</a>
 	</form>
 </div>

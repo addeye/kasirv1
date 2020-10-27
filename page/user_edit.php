@@ -1,15 +1,12 @@
 
-<?php 
-
-include 'config.php';
-session_start();
+<?php
 include 'authcheck.php';
 
 $role = mysqli_query($dbconnect,"SELECT * FROM role");
 
 if (isset($_GET['id'])) {
 	$id = $_GET['id'];
-	
+
 	//menampilkan data berdasarkan ID
 	$data = mysqli_query($dbconnect, "SELECT * FROM user where id_user='$id'");
 	$data = mysqli_fetch_assoc($data);
@@ -18,7 +15,7 @@ if (isset($_GET['id'])) {
 if(isset($_POST['update']))
 {
 	$id = $_GET['id'];
-	
+
 	$nama = $_POST['nama'];
 	$username = $_POST['username'];
 	$password = $_POST['password'];
@@ -30,18 +27,10 @@ if(isset($_POST['update']))
 	$_SESSION['success'] = 'Berhasil memperbaruhi data';
 
 	// mengalihkan halaman ke list barang
-	header("location:user.php");
+	header('location: index.php?page=user');
 }
 
 ?>
-
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Perbaruhi Barang</title>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-</head>
-<body>
 <div class="container">
 	<h1>Edit Barang</h1>
 	<form method="post">
@@ -70,8 +59,6 @@ if(isset($_POST['update']))
 	    </select>
 	  </div>
   	<input type="submit" name="update" value="Perbaruhi" class="btn btn-primary">
-  	<a href="/user.php" class="btn btn-warning">Kembali</a>
+  	<a href="?page=user" class="btn btn-warning">Kembali</a>
 	</form>
 </div>
-</body>
-</html>

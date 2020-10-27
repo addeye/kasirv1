@@ -10,7 +10,3 @@ Aplikasi ini benar benar cocok untuk pemula yang mau belajar PHP dan Mysql dari 
 
 
 Klik channel saya untuk lebih banyak lagi video tutorial
-
-## Penting
-Sourcode tidak disertai database nya. 
-Hubungi saya di email atau whatsapp

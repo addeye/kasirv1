@@ -1,8 +1,6 @@
 
-<?php 
+<?php
 
-include 'config.php';
-session_start();
 include 'authcheck.php';
 
 $role = mysqli_query($dbconnect,"SELECT * FROM role");
@@ -19,24 +17,17 @@ if (isset($_POST['simpan'])) {
 
 
 	// Menyimpan ke database;
-	mysqli_query($dbconnect, "INSERT INTO user VALUES ('','$nama','$username','$password','$role_id')");
+	mysqli_query($dbconnect, "INSERT INTO user VALUES (NULL,'$nama','$username','$password','$role_id')");
 
 	$_SESSION['success'] = 'Berhasil menambahkan data';
 
 	// mengalihkan halaman ke list barang
-	header("location:user.php");
+	header('location: index.php?page=user');
 
 }
 
 ?>
 
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Tambah User</title>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-</head>
-<body>
 <div class="container">
 	<h1>Tambah User</h1>
 	<form method="post">
@@ -62,8 +53,6 @@ if (isset($_POST['simpan'])) {
 	    </select>
 	  </div>
   	<input type="submit" name="simpan" value="Simpan" class="btn btn-primary">
-  	<a href="/user.php" class="btn btn-warning">Kembali</a>
+  	<a href="?page=user" class="btn btn-warning">Kembali</a>
 	</form>
 </div>
-</body>
-</html>

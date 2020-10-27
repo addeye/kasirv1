@@ -56,7 +56,7 @@ if (isset($_SESSION['userid'])) {
   <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-toggle="collapse" data-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-  <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
+
   <ul class="navbar-nav px-3">
     <li class="nav-item text-nowrap">
       <a class="nav-link" href="logout.php">Logout</a>
@@ -82,19 +82,19 @@ if (isset($_SESSION['userid'])) {
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="role.php">
+            <a class="nav-link" href="index.php?page=role">
               <span data-feather="shopping-cart"></span>
               Role
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="user.php">
+            <a class="nav-link" href="index.php?page=user">
               <span data-feather="users"></span>
               User
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="dis_barang.php">
+            <a class="nav-link" href="index.php?page=dis_barang">
               <span data-feather="bar-chart-2"></span>
               Diskon Barang
             </a>

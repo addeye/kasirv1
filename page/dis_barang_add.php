@@ -1,8 +1,6 @@
 
 <?php
 
-include 'config.php';
-session_start();
 include 'authcheck.php';
 
 $view = $dbconnect->query('SELECT * FROM barang');
@@ -19,18 +17,10 @@ if (isset($_POST['simpan'])) {
     $_SESSION['success'] = 'Berhasil menambahkan data';
 
     // mengalihkan halaman ke list barang
-    header('location:dis_barang.php');
+    header('location: index.php?page=dis_barang');
 }
 
 ?>
-
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Tambah Diskon Barang</title>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-</head>
-<body>
 <div class="container">
 	<h1>Tambah Diskon Barang</h1>
 	<form method="post">
@@ -51,8 +41,6 @@ if (isset($_POST['simpan'])) {
 	    <input type="text" name="potongan" class="form-control" placeholder="Jumlah Potongan">
 	  </div>
   	<input type="submit" name="simpan" value="Simpan" class="btn btn-primary">
-  	<a href="/dis_barang.php" class="btn btn-warning">Kembali</a>
+    <a href="?page=dis_barang" class="btn btn-warning">Kembali</a>
 	</form>
 </div>
-</body>
-</html>

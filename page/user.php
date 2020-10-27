@@ -1,8 +1,5 @@
 
-<?php 
-
-include 'config.php';
-session_start();
+<?php
 
 include 'authcheck.php';
 
@@ -10,13 +7,6 @@ $view = $dbconnect->query("SELECT u.*,r.nama as nama_role FROM user as u INNER J
 
 ?>
 
-<!DOCTYPE html>
-<html>
-<head>
-	<title>List User</title>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-</head>
-<body>
 <div class="container">
 
 	<?php if(isset($_SESSION['success']) && $_SESSION['success'] != '') {?>
@@ -25,15 +15,15 @@ $view = $dbconnect->query("SELECT u.*,r.nama as nama_role FROM user as u INNER J
 			<?=$_SESSION['success']?>
 		</div>
 
-	<?php 
-		} 
+	<?php
+		}
 		$_SESSION['success'] = '';
 	?>
 
 	<h1>List User</h1>
 
-	<a href="/user_add.php" class="btn btn-primary">Tambah data</a>
-
+	<a href="index.php?page=user_add" class="btn btn-primary">Tambah data</a>
+	<hr>
 	<table class="table table-bordered">
 		<tr>
 			<th>ID User</th>
@@ -54,15 +44,13 @@ $view = $dbconnect->query("SELECT u.*,r.nama as nama_role FROM user as u INNER J
 			<td><?=$row['password']?></td>
 			<td><?=$row['nama_role']?></td>
 			<td>
-				<a href="/user_edit.php?id=<?= $row['id_user'] ?>">Edit</a> |
-				<a href="/user_hapus.php?id=<?= $row['id_user'] ?>" onclick="return confirm('apakah anda yakin?')">Hapus</a>
+				<a href="index.php?page=user_edit&id=<?= $row['id_user'] ?>">Edit</a> |
+				<a href="/page/user_hapus.php?id=<?= $row['id_user'] ?>" onclick="return confirm('apakah anda yakin?')">Hapus</a>
 			</td>
 		</tr>
-			
+
 		<?php }
 		?>
-		
+
 	</table>
 </div>
-</body>
-</html>
